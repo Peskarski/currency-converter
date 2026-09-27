@@ -51,9 +51,13 @@ export const CurrencyConverter = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      {isCurrenciesError && <ErrorMessage message="Failed to load currencies" />}
-      <div className="flex gap-4">
+    <section className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      {isCurrenciesError && (
+        <div className="rounded-lg px-3 py-2">
+          <ErrorMessage message="Failed to load currencies" />
+        </div>
+      )}
+      <div className="grid gap-3 grid-cols-2">
         <Input
           value={amount}
           onChange={handleAmountChange}
@@ -76,17 +80,26 @@ export const CurrencyConverter = () => {
         disabled={!(fromCurrency || toCurrency) || isCurrenciesLoading}
         aria-label="Swap currencies"
         title="Swap currencies"
+        className="self-center"
       >
-        ⇄
+        ⇅
       </Button>
-      <div className="flex gap-4 align-center">
-        {isConversionLoading || (amount !== debouncedAmount && fromCurrency && toCurrency) ? (
-          <ClipLoader color="#000" size={20} />
-        ) : isConversionError ? (
-          <ErrorMessage message="Failed to convert currencies" />
-        ) : (
-          <span>{conversion?.value.toFixed(getCurrencyPrecision(toCurrency)) || 0}</span>
-        )}
+      <div className="grid gap-3 grid-cols-2">
+        <div className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium text-gray-700">Converted amount</span>
+          <div
+            className="flex h-11 items-center rounded-lg border border-gray-200 bg-gray-50 px-3 text-lg font-medium text-gray-900"
+            aria-live="polite"
+          >
+            {isConversionLoading || (amount !== debouncedAmount && fromCurrency && toCurrency) ? (
+              <ClipLoader size={20} />
+            ) : isConversionError ? (
+              <ErrorMessage message="Failed to convert currencies" />
+            ) : (
+              <span>{conversion?.value.toFixed(getCurrencyPrecision(toCurrency)) || 0}</span>
+            )}
+          </div>
+        </div>
         <Select
           options={currencyOptions}
           value={toCurrency}
@@ -96,6 +109,6 @@ export const CurrencyConverter = () => {
           disabled={isCurrenciesLoading}
         />
       </div>
-    </div>
+    </section>
   );
 };

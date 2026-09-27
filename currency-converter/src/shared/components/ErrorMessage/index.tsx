@@ -4,7 +4,7 @@ type ErrorMessageProps = {
 
 export const ErrorMessage = ({ message }: ErrorMessageProps) => {
   return (
-    <span className="text-red-500" role="alert">
+    <span className="text-sm text-red-600" role="alert">
       {message}
     </span>
   );

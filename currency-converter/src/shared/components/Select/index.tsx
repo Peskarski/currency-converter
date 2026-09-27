@@ -13,13 +13,17 @@ export const Select = ({
   ...otherProps
 }: SelectProps & React.SelectHTMLAttributes<HTMLSelectElement>) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium">
+        <label htmlFor={id} className="text-sm font-medium text-gray-700">
           {label}
         </label>
       )}
-      <select className="border border-gray-300 rounded-md p-2" id={id} {...otherProps}>
+      <select
+        className="h-11 w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-3 text-base text-gray-900 shadow-xs outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+        id={id}
+        {...otherProps}
+      >
         {options.map((option) => (
           <option key={option.value} value={option.value} disabled={option.disabled}>
             {option.label}

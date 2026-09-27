@@ -6,8 +6,12 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <h1 className="text-3xl font-bold">Currency Converter</h1>
-      <CurrencyConverter />
+      <main className="flex min-h-svh justify-center bg-gray-50 px-4 py-12">
+        <div className="w-full max-w-xl">
+          <h1 className="mb-6 text-2xl font-semibold">Currency Converter</h1>
+          <CurrencyConverter />
+        </div>
+      </main>
     </QueryClientProvider>
   );
 }

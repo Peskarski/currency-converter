@@ -8,13 +8,17 @@ export const Input = ({
   ...otherProps
 }: InputProps & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium">
+        <label htmlFor={id} className="text-sm font-medium text-gray-700">
           {label}
         </label>
       )}
-      <input className="border border-gray-300 rounded-md p-2" id={id} {...otherProps} />
+      <input
+        className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-gray-900 shadow-xs outline-none disabled:bg-gray-100 disabled:text-gray-500"
+        id={id}
+        {...otherProps}
+      />
     </div>
   );
 };
