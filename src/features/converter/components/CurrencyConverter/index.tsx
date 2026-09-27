@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Input, Select, ErrorMessage, Button, Spinner } from "@shared/components";
+import { Select, ErrorMessage, Button, Spinner } from "@shared/components";
 import { type Option } from "@shared/types";
 import { useDebounce } from "@shared/hooks";
 import { useCurrencies, useConversion } from "../../hooks";
 import { convertCurrenciesToOptions } from "../../utils";
-
-const AMOUNT_PATTERN = /^\d*[.]?\d*$/;
+import { AmountInput } from "./AmountInput";
 
 export const CurrencyConverter = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
@@ -32,13 +31,6 @@ export const CurrencyConverter = () => {
     amount: Number(debouncedAmount),
   });
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const next = e.target.value;
-    if (AMOUNT_PATTERN.test(next)) {
-      setAmount(next);
-    }
-  };
-
   const getCurrencyPrecision = (currency: string) => {
     const currencyData = currencies?.find((c) => c.short_code === currency);
     return currencyData?.precision ?? 2;
@@ -57,14 +49,7 @@ export const CurrencyConverter = () => {
         </div>
       )}
       <div className="grid gap-3 grid-cols-2">
-        <Input
-          value={amount}
-          onChange={handleAmountChange}
-          label="Amount"
-          id="amount"
-          type="text"
-          inputMode="decimal"
-        />
+        <AmountInput value={amount} onChange={setAmount} />
         <Select
           options={currencyOptions}
           value={fromCurrency}

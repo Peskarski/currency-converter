@@ -20,6 +20,7 @@ A simple currency converter, built with React, TypeScript and TanStack Query on 
 
 ```bash
 git clone https://github.com/Peskarski/currency-converter.git
+cd currency-converter
 npm install
 cp .env.example .env
 ```
