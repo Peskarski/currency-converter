@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { Input, Select, ErrorMessage } from "@shared/components";
+import { Input, Select, ErrorMessage, Button } from "@shared/components";
 import { type Option } from "@shared/types";
 import { useDebounce } from "@shared/hooks";
 import { useCurrencies, useConversion } from "../../hooks";
@@ -45,6 +45,11 @@ export const CurrencyConverter = () => {
     return currencyData?.precision ?? 2;
   };
 
+  const handleSwapClick = () => {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+  };
+
   return (
     <div className="flex flex-col gap-4">
       {isCurrenciesError && <ErrorMessage message="Failed to load currencies" />}
@@ -66,6 +71,14 @@ export const CurrencyConverter = () => {
           disabled={isCurrenciesLoading}
         />
       </div>
+      <Button
+        onClick={handleSwapClick}
+        disabled={!(fromCurrency || toCurrency) || isCurrenciesLoading}
+        aria-label="Swap currencies"
+        title="Swap currencies"
+      >
+        ⇄
+      </Button>
       <div className="flex gap-4 align-center">
         {isConversionLoading || (amount !== debouncedAmount && fromCurrency && toCurrency) ? (
           <ClipLoader color="#000" size={20} />
