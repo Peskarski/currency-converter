@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { type CurrencyApiResponse } from "@shared/types";
 import { getCurrencies } from "../api";
 
 export const useCurrencies = () => {
-  return useQuery<CurrencyApiResponse[]>({
+  return useQuery({
     queryKey: ["currencies"],
     queryFn: getCurrencies,
+    staleTime: Infinity,
   });
 };

@@ -1,8 +1,17 @@
-import { type CurrencyApiResponse } from "@shared/types";
+import { type Currency } from "../types";
 
-export const convertCurrenciesToOptions = (currencies: Record<number, CurrencyApiResponse>) => {
-  return Object.values(currencies).map((currency) => ({
-    value: currency.short_code,
-    label: currency.name,
-  }));
+const defaultCurrencyOption = {
+  label: "Select Currency",
+  value: "",
+  disabled: true,
+};
+
+export const convertCurrenciesToOptions = (currencies: Currency[]) => {
+  return [
+    defaultCurrencyOption,
+    ...currencies.map((currency) => ({
+      label: currency.name,
+      value: currency.short_code,
+    })),
+  ];
 };

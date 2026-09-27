@@ -2,11 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CurrencyConverter } from "../features/converter/components/CurrencyConverter";
 
 const queryClient = new QueryClient();
-queryClient.setDefaultOptions({
-  queries: {
-    staleTime: Infinity,
-  },
-});
 
 function App() {
   return (

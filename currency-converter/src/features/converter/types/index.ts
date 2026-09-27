@@ -1,7 +1,8 @@
-export type CurrencyApiResponse = {
+export type Currency = {
   short_code: string;
   name: string;
   symbol: string;
+  precision: number;
 };
 
 export type ConverterPayload = {

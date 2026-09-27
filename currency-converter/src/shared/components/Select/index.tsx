@@ -2,13 +2,16 @@ import { type Option } from "@shared/types";
 
 type SelectProps = {
   options: Option[];
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   label?: string;
-  id?: string;
+  disabled?: boolean;
 };
 
-export const Select = ({ options, value, onChange, label, id }: SelectProps) => {
+export const Select = ({
+  options,
+  label,
+  id,
+  ...otherProps
+}: SelectProps & React.SelectHTMLAttributes<HTMLSelectElement>) => {
   return (
     <div className="flex flex-col gap-2">
       {label && (
@@ -16,14 +19,9 @@ export const Select = ({ options, value, onChange, label, id }: SelectProps) => 
           {label}
         </label>
       )}
-      <select
-        id={id}
-        value={value}
-        onChange={onChange}
-        className="border border-gray-300 rounded-md p-2"
-      >
+      <select className="border border-gray-300 rounded-md p-2" id={id} {...otherProps}>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value} disabled={option.disabled}>
             {option.label}
           </option>
         ))}
