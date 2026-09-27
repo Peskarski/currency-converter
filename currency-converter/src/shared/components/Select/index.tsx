@@ -20,7 +20,7 @@ export const Select = ({
         </label>
       )}
       <select
-        className="h-11 w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-3 text-base text-gray-900 shadow-xs outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+        className="h-11 w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-3 text-base text-gray-900 shadow-xs disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
         id={id}
         {...otherProps}
       >

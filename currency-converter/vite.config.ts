@@ -9,7 +9,9 @@ export default defineConfig(({ mode }) => {
   const apiKey = env.VITE_CURRENCY_BEACON_API_KEY;
 
   if (!apiKey) {
-    throw new Error("CURRENCY_BEACON_API_KEY is missing. Copy .env.example to .env and set it.");
+    throw new Error(
+      "VITE_CURRENCY_BEACON_API_KEY is missing. Copy .env.example to .env and set it.",
+    );
   }
 
   const apiProxy: Record<string, ProxyOptions> = {

@@ -15,7 +15,7 @@ export const Input = ({
         </label>
       )}
       <input
-        className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-gray-900 shadow-xs outline-none disabled:bg-gray-100 disabled:text-gray-500"
+        className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-gray-900 shadow-xs disabled:bg-gray-100 disabled:text-gray-500"
         id={id}
         {...otherProps}
       />

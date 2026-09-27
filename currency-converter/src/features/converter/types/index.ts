@@ -1,7 +1,6 @@
 export type Currency = {
   short_code: string;
   name: string;
-  symbol: string;
   precision: number;
 };
 

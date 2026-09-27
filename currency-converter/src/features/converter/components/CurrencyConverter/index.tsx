@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
-import { Input, Select, ErrorMessage, Button } from "@shared/components";
+import { Input, Select, ErrorMessage, Button, Spinner } from "@shared/components";
 import { type Option } from "@shared/types";
 import { useDebounce } from "@shared/hooks";
 import { useCurrencies, useConversion } from "../../hooks";
@@ -92,7 +91,7 @@ export const CurrencyConverter = () => {
             aria-live="polite"
           >
             {isConversionLoading || (amount !== debouncedAmount && fromCurrency && toCurrency) ? (
-              <ClipLoader size={20} />
+              <Spinner />
             ) : isConversionError ? (
               <ErrorMessage message="Failed to convert currencies" />
             ) : (
