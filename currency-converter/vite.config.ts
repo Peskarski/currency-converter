@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
+        "@shared": fileURLToPath(new URL("./src/shared", import.meta.url)),
       },
     },
     server: { proxy: apiProxy },
