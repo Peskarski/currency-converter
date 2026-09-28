@@ -82,6 +82,7 @@ src/
 │       ├── api/            # API calls (unwrap the response envelope)
 │       ├── components/
 │       │   ├── AmountInput/        # Amount field with input validation (+ tests)
+│       │   ├── ConversionResult/   # Result states: loading, error, empty, value
 │       │   └── CurrencyConverter/  # Container: state, queries, layout
 │       ├── hooks/          # useCurrencies, useConversion (TanStack Query)
 │       ├── types/          # Domain types

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Select, ErrorMessage, Button, Spinner } from "@shared/components";
+import { Select, ErrorMessage, Button } from "@shared/components";
 import { type Option } from "@shared/types";
 import { useDebounce } from "@shared/hooks";
 import { useCurrencies, useConversion } from "../../hooks";
 import { convertCurrenciesToOptions } from "../../utils";
 import { AmountInput } from "../AmountInput";
+import { ConversionResult } from "../ConversionResult";
 
 export const CurrencyConverter = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");
@@ -75,13 +76,14 @@ export const CurrencyConverter = () => {
             className="flex h-11 items-center rounded-lg border border-gray-200 bg-gray-50 px-3 text-lg font-medium text-gray-900"
             aria-live="polite"
           >
-            {isConversionLoading || (amount !== debouncedAmount && fromCurrency && toCurrency) ? (
-              <Spinner />
-            ) : isConversionError ? (
-              <ErrorMessage message="Failed to convert currencies" />
-            ) : (
-              <span>{conversion?.value.toFixed(getCurrencyPrecision(toCurrency)) || 0}</span>
-            )}
+            <ConversionResult
+              isLoading={
+                isConversionLoading || !!(amount !== debouncedAmount && fromCurrency && toCurrency)
+              }
+              isError={isConversionError}
+              value={conversion?.value}
+              precision={getCurrencyPrecision(toCurrency)}
+            />
           </div>
         </div>
         <Select
