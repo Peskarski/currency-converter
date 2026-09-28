@@ -2,6 +2,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CurrencyConverter } from "../features/converter/components/CurrencyConverter";
 
 const queryClient = new QueryClient();
+queryClient.setDefaultOptions({
+  queries: {
+    retry: 1,
+  },
+});
 
 function App() {
   return (

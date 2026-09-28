@@ -4,7 +4,7 @@ import { type Option } from "@shared/types";
 import { useDebounce } from "@shared/hooks";
 import { useCurrencies, useConversion } from "../../hooks";
 import { convertCurrenciesToOptions } from "../../utils";
-import { AmountInput } from "./AmountInput";
+import { AmountInput } from "../AmountInput";
 
 export const CurrencyConverter = () => {
   const [fromCurrency, setFromCurrency] = useState<string>("");

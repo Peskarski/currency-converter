@@ -69,6 +69,7 @@ npm test
 - **TanStack Query** for server state (caching, request cancellation, loading/error states)
 - **Axios** as the HTTP client
 - **Tailwind CSS 4** for styling
+- **Vitest** + **React Testing Library** for tests
 - **ESLint** (incl. `react-hooks` and `@tanstack/eslint-plugin-query`) + **Prettier**
 
 ## Project structure
@@ -79,15 +80,18 @@ src/
 ├── features/
 │   └── converter/          # Everything specific to currency conversion
 │       ├── api/            # API calls (unwrap the response envelope)
-│       ├── components/     # CurrencyConverter container
+│       ├── components/
+│       │   ├── AmountInput/        # Amount field with input validation (+ tests)
+│       │   └── CurrencyConverter/  # Container: state, queries, layout
 │       ├── hooks/          # useCurrencies, useConversion (TanStack Query)
 │       ├── types/          # Domain types
 │       └── utils/          # Mapping currencies to select options
-└── shared/                 # Feature-agnostic building blocks
-    ├── api/                # Axios instance
-    ├── components/         # Input, Select, Button, Spinner, ErrorMessage
-    ├── hooks/              # useDebounce
-    └── types/              # Shared types (select Option)
+├── shared/                 # Feature-agnostic building blocks
+│   ├── api/                # Axios instance
+│   ├── components/         # Input, Select, Button, Spinner, ErrorMessage
+│   ├── hooks/              # useDebounce
+│   └── types/              # Shared types (select Option)
+└── test/                   # Test setup (jest-dom matchers, cleanup)
 ```
 
 Code is organised by feature(s). `shared` never imports from `features`, so the generic components and hooks stay reusable.
