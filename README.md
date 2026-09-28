@@ -46,9 +46,21 @@ The app runs at [http://localhost:5173](http://localhost:5173).
 | `npm run dev`          | Start the dev server (with the API proxy)               |
 | `npm run build`        | Type-check and build for production into `dist/`        |
 | `npm run preview`      | Serve the production build locally (with the API proxy) |
+| `npm test`             | Run the tests once                                      |
+| `npm run test:watch`   | Run the tests in watch mode                             |
 | `npm run lint`         | Run ESLint                                              |
 | `npm run format`       | Format the code with Prettier                           |
 | `npm run format:check` | Check formatting without changing files                 |
+
+## Tests
+
+Tests use **Vitest** with **React Testing Library** and **user-event** in a jsdom environment. They don't need an API key: `vitest.config.ts` is separate from `vite.config.ts` and has no proxy.
+
+```bash
+npm test
+```
+
+`AmountInput.test.tsx` covers the amount validation the way a user interacts with it: valid keystrokes are passed to `onChange`, invalid ones (letters, `,`) are rejected and the field keeps its value, the field can be cleared, a mixed sequence like `1a2.b5.3` results in `12.53`, and pasted text is validated.
 
 ## Tech stack
 
@@ -119,4 +131,3 @@ The amount is debounced by 500 ms to avoid one request per each value change. Wh
 ## Limitations and possible improvements
 
 - **Deployment:** the proxy only exists in `npm run dev` / `npm run preview`. A static deployment would need a small serverless function (Vercel, Netlify, Cloudflare) that does the same job at `/api`; the frontend would not need to change.
-- **Tests:** unit tests for amount parsing/formatting and an integration test of the conversion flow with MSW.
